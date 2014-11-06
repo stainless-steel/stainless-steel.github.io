@@ -5,6 +5,8 @@ set -ev
 git config user.name "${GIT_NAME}"
 git config user.email "${GIT_EMAIL}"
 
+cargo doc
+
 sudo pip install ghp-import
 ghp-import -m 'Updated the documentation' -n target/doc
 
