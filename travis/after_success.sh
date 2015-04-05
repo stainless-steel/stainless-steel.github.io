@@ -5,7 +5,7 @@ set -ev
 git config user.name "Travis CI"
 git config user.email ""
 
-URL="$(echo ${TRAVIS_REPO_SLUG} | cut -d '/' -f 2)/index.html"
+URL="$(echo ${TRAVIS_REPO_SLUG} | cut -d '/' -f 2 | sed 's/-/_/')/index.html"
 
 HTML="<!DOCTYPE html>
 <link rel='canonical' href='${URL}'>
