@@ -5,7 +5,11 @@ set -ev
 git config user.name "Travis CI"
 git config user.email ""
 
-URL="$(echo ${CRATE_NAME:=${TRAVIS_REPO_SLUG}} | cut -d '/' -f 2 | sed 's/-/_/g')/index.html"
+if [ -z "$CRATE_NAME" ]; then
+  CRATE_NAME=$(echo ${TRAVIS_REPO_SLUG} | cut -d '/' -f 2 | sed 's/-/_/g')
+fi
+
+URL="${CRATE_NAME}/index.html"
 
 HTML="<!DOCTYPE html>
 <link rel='canonical' href='${URL}'>
