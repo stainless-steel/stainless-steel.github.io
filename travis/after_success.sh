@@ -5,7 +5,7 @@ set -ev
 git config user.name "Travis CI"
 git config user.email ""
 
-if [ -z "$CRATE_NAME" ]; then
+if [ -z "${CRATE_NAME}" ]; then
   CRATE_NAME=$(echo ${TRAVIS_REPO_SLUG} | cut -d '/' -f 2 | sed 's/-/_/g')
 fi
 
@@ -16,7 +16,7 @@ HTML="<!DOCTYPE html>
 <meta http-equiv='refresh' content='0; url=${URL}'>
 <script>window.location='${URL}'</script>"
 
-cargo doc
+cargo doc ${CARGO_FLAGS}
 echo "${HTML}" > target/doc/index.html
 
 sudo pip install ghp-import
