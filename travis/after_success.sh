@@ -2,6 +2,10 @@
 
 set -ev
 
+if [ ! -z "${RUSTDOC_VERSION}" ] && [ "${RUSTDOC_VERSION}" != "${TRAVIS_RUST_VERSION}" ]; then
+  exit
+fi
+
 git config user.name "Travis CI"
 git config user.email ""
 
