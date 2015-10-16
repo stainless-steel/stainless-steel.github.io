@@ -23,7 +23,7 @@ HTML="<!DOCTYPE html>
 cargo doc ${CARGO_FLAGS}
 echo "${HTML}" > target/doc/index.html
 
-pip install ghp-import --user $USER
-$HOME/.local/bin/ghp-import -m 'Update the documentation' -n target/doc
+pip install ghp-import --user ${USER}
+${HOME}/.local/bin/ghp-import -m 'Update the documentation' -n target/doc
 
 git push -qf https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
