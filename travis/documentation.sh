@@ -22,8 +22,16 @@ HTML="<!DOCTYPE html>
 cargo doc ${CARGO_FLAGS}
 echo "${HTML}" > target/doc/index.html
 
-export PYTHONUSERBASE="${HOME}/.local"
-pip install ghp-import --user ${USER}
-${PYTHONUSERBASE}/bin/ghp-import -m 'Update the documentation' -n target/doc
+python -c 'import sys; print(sys.real_prefix)' 2> /dev/null
+if [ $? -eq 0 ]; then
+  pip install ghp-import
+  GHP_IMPORT=ghp-import
+else
+  export PYTHONUSERBASE="${HOME}/.local"
+  pip install ghp-import --user ${USER}
+  GHP_IMPORT=${PYTHONUSERBASE}/bin/ghp-import
+fi
+
+${GHP_IMPORT} -m 'Update the documentation' -n target/doc
 
 git push -qf https://${GITHUB_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git gh-pages
