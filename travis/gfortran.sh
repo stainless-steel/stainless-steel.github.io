@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ev
+set -v
 
 if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
   BREW_PATH=$(brew --prefix)
