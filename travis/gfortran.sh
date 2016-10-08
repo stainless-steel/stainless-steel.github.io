@@ -1,11 +1,11 @@
 #!/bin/bash
 
-set -v
+set -ev
 
 if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
-  brew uninstall gcc49
-  curl -L http://prdownloads.sourceforge.net/hpc/gcc-6.2-bin.tar.gz -o archive.tar.gz
-  mkdir root && tar -xzf archive.tar.gz -C root && cp -RLp root/ /
+    brew uninstall gcc49
+    curl -L http://prdownloads.sourceforge.net/hpc/gcc-6.2-bin.tar.gz -o archive.tar.gz
+    mkdir root && tar -xzf archive.tar.gz -C root && cp -R root/ /
 fi
 
 gfortran --version
