@@ -3,7 +3,7 @@
 set -ev
 
 if [ -z "${RUSTDOC_VERSION}" ]; then
-    RUSTDOC_VERSION=nightly
+  RUSTDOC_VERSION=nightly
 fi
 
 [ "${TRAVIS_RUST_VERSION}" != "${RUSTDOC_VERSION}" ] && exit
@@ -14,7 +14,7 @@ git config user.name "Travis CI"
 git config user.email ""
 
 if [ -z "${CRATE_NAME}" ]; then
-    CRATE_NAME=$(echo ${TRAVIS_REPO_SLUG} | cut -d '/' -f 2 | sed 's/-/_/g')
+  CRATE_NAME=$(echo ${TRAVIS_REPO_SLUG} | cut -d '/' -f 2 | sed 's/-/_/g')
 fi
 
 URL="${CRATE_NAME}/index.html"
